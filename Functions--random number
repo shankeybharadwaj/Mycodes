@@ -1,0 +1,20 @@
+#include <iostream>
+#include <cstdlib>          // Required for rand()
+#include <ctime>             // Required for time()
+using namespace std;
+
+int main()
+{
+    int random_number {};
+    size_t count {10};              // number of random nos. to generate
+    int min{1};
+    int max{6};
+    cout <<"RAND_MAX on my system is : "<<RAND_MAX<<endl;
+    srand(time(nullptr));           // Here we are seeding the random number generator.  If we dont do this then thr random nos. will repeat in each running of program. 
+    for (int i{};i<count;++i){
+        random_number = rand() % max + min;         // generate a random number [min,max]
+        cout <<random_number<<endl;
+    }
+        
+    return 0;
+}
