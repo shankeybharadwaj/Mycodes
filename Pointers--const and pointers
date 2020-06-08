@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    // Pointer to constants
+    int high_score{100},low_score{65};
+    const int *score_ptr{&high_score};
+    //  *(score_ptr)=86;            // ERROR
+    score_ptr = &low_score;     // OK       Address can be changed
+    
+    
+    // constant pointers
+    int *const ptr{&high_score};
+    *ptr = 86;          // OK
+    // ptr = &low_score;   // ERROR
+    
+    
+    
+    // constant pointer to constant
+    const int *const ptr1{&high_score};
+    // *ptr1 = 86;         // ERROR
+    // ptr1 = *low_score;  // ERROR
+    return 0;
+}
