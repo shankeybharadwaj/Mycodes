@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+int n=100;
+void global_example(){
+    cout<<n<<" ";
+    n*=2;
+    cout<<n<<endl;
+}
+void static_local_example(){
+    static int a{5000};         // static == between the calls it retains its new value 
+    cout<<a<<" ";           
+    a+=1000;
+    cout<<a<<endl;
+}
+int main()
+{
+    int num{10},num1{20};       // Local to this main
+    cout <<num<<" "<<num1<<endl;        // 10 20
+    {
+        int num{30};           // local to this inner block
+        cout <<num<<" "<<num1<<endl;        // 30 20
+    }
+    cout<<num<<endl;            // 10
+    
+    
+    cout<<n<<endl;          // 100
+    global_example();       // 100 200
+    cout<<n<<endl;       // 200
+    global_example();       // 200 400
+    cout<<n<<endl;          // 400
+    
+    
+    static_local_example();     // 5000 6000
+    static_local_example();     // 6000 7000
+    return 0;
+}
