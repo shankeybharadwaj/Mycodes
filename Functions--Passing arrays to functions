@@ -1,0 +1,22 @@
+#include <iostream>
+using namespace std;
+
+void print_array(int numbers[],size_t size);
+void zero_array(int numbers[],size_t size);
+int main(){
+    int my_nos[]{1,2,3,4,5};
+    print_array(my_nos,5);  // 1 2 3 4 5
+    zero_array(my_nos,5);         
+    print_array(my_nos,5);  // 0 0 0 0 0    In case of passing arrays to functions we can modify the elements of the actual array
+    return 0;               // within the function because in this case copy is not sent into the function , Address of the array is sent.
+}
+void zero_array(int numbers[],size_t size){
+    for(size_t i{0};i<size;++i)
+        numbers[i]=0;
+}
+void print_array(int numbers[],size_t size){
+    for(size_t i{0};i<size;++i)
+        cout<<numbers[i]<<" ";
+    cout<<endl;
+}
+
