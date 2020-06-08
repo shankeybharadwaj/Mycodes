@@ -1,0 +1,59 @@
+#include <iostream>
+using namespace std;
+
+int *largest_int(int *ptr1,int *ptr2){
+    if(*ptr1>*ptr2)
+        return ptr1;
+    else
+        return ptr2;
+}
+
+int *create_array(size_t size,int init_value=0){
+    int *new_storage{nullptr};
+    new_storage = new int[size];
+    for(int i=0;i<size;++i)
+        *(new_storage+i)=init_value;
+    return new_storage;                 // Returns the address of the first element of the newly created array.
+}
+//int *Dont_Do_This(){
+//    int size;
+//    // ........
+//    return &size;       // we cannot return address of a variable which is local to it
+//}
+//int *Or_This(){
+//    int size;
+//    int *ptr(&size);
+//    // ........
+//    return ptr;         // same problem as above function 
+//}
+
+void display(int *p,int size){
+    for(int i=0;i<size;++i)
+        cout<<*p++<<" ";        // OR   cout<<*(p+i)<<" ";
+    cout<<endl;
+}
+
+
+int main()
+{
+    int a{10},b{20};
+    int *largest_ptr{nullptr};
+    largest_ptr = largest_int(&a,&b);
+    cout<<&b<<endl;
+    cout<<largest_ptr<<endl;        // &b       as (b>a)
+    cout<<*largest_ptr<<endl;       // 20
+    
+    cout<<"\n----------------------------------------\n";
+    
+    
+    int *my_array{nullptr},size{},init_value;     // will be allocated by the function (in next line)
+    cout<<"How many integers would you like to allocate?? ";
+    cin>>size;
+    cout<<"What value would you like them initialised to?? ";
+    cin>>init_value;
+    my_array = create_array(size,init_value);    // create the array
+    //  we use it
+    display(my_array,size);
+    delete [] my_array;     // be sure to delete the array
+    return 0;
+}
