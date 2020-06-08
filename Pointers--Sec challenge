@@ -1,0 +1,41 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+int *apply_all(int arr1[],size_t s1,int arr2[],size_t s2){
+    int *new_storage{nullptr};
+    int a=s1*s2;
+    new_storage = new int[a];
+    int i=0;
+    for(int k=0;k<s2;++k){
+        for(int j=0;j<s1;++j){
+            *(new_storage+i) = (arr2[k])*(arr1[j]);
+            ++i;
+        }
+    }
+    
+    return new_storage;
+} 
+void print(int arr[],size_t size){
+    cout<<"[ ";
+    for(int i{};i<size;++i)
+        cout<<arr[i]<<" ";
+    cout<<"]";
+    cout<<endl;
+} 
+
+int main(){
+    int array1[]{1,2,3,4,5};
+    int array2[]{10,20,30};
+    cout<<"Array1 : ";
+    print(array1,5);
+    cout<<"Array2 : ";
+    print(array2,3);
+    
+    int *result = apply_all(array1,5,array2,3);
+    cout<<"Result : ";
+    print(result,15);
+    delete [] result;
+    return 0;
+}
