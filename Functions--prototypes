@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+ 
+const double pi = 3.14159;
+// Function Prototypes  --  By doing this we dont have to worry about the order of defining the functions
+double calc_area_circle(double r); 
+void area_circle();
+double calc_vol_cylinder(double r,double h);
+void volume_cylinder();
+
+int main(){
+    area_circle();    
+    volume_cylinder();
+    return 0;
+}
+double calc_area_circle(double r){
+    return pi*r*r;
+}
+void area_circle(){
+    double r;
+    cout <<"Enter the radius: ";
+    cin>>r;
+    cout <<"The area of circle is : "<<calc_area_circle(r)<<endl;
+}
+double calc_vol_cylinder(double r,double h){        // Pay attention here!!!!
+    return pi*r*r*h;                // OR    return calc_area_circle(r)*h;
+}
+void volume_cylinder(){
+    double r,h;
+    cout <<"Enter the radius and height with a space : ";
+    cin>>r>>h;
+    cout <<"The volume of the cylinder is :  "<<calc_vol_cylinder(r,h)<<endl;
+}
