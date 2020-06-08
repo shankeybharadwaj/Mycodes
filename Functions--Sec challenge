@@ -1,0 +1,97 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+void display_statements();
+char choice_selection();
+void print_list(const vector<int>&l);
+void add_nos(vector<int>&l);
+void mean(const vector<int>&l);
+void find_smallest(const vector<int>&l);
+void find_largest(const vector<int>&l);
+
+int main()
+{
+    vector<int> list{};
+    char c;
+    do{
+        display_statements();
+        c=choice_selection();
+        if(c=='P'||c=='p')
+            print_list(list);
+        else if(c=='A'||c=='a')
+            add_nos(list);
+        else if(c=='M'||c=='m')
+            mean(list);
+        else if(c=='S'||c=='s')
+            find_smallest(list);
+        else if(c=='L'||c=='l')
+            find_largest(list);
+        else if (c != 'Q' && c != 'q')
+            cout <<"Invalid option !! Try again.....\n\n";
+    }while(c !='q'|| c !='Q');
+    cout<<"Goodbye"<<endl;
+    return 0;
+}
+
+void display_statements(){
+    cout <<"P - print number"<<endl;
+    cout <<"A - add a number"<<endl;
+    cout <<"M - display mean of the number"<<endl;
+    cout <<"S - display smallest number"<<endl;
+    cout <<"L - display largest number"<<endl;
+    cout <<"Q - quit"<<endl;
+    cout <<"Enter ur choice: ";
+}
+char choice_selection(){
+    char w;
+    cin>>w;
+    return w;
+}
+void print_list(const vector<int>&l){
+        cout <<"[ ";
+        for (auto val : l)
+            cout << val<<" ";
+        cout << " ]\n\n";
+}
+void add_nos(vector<int>&l){
+        cout <<"Enter the number u want to add: ";
+        int num;
+        cin >>num;
+        l.push_back(num);
+        cout << num << " is added to the list\n\n";
+}
+void mean(const vector<int>&l){
+            if (l.size()==0)
+                cout <<"List is empty---No mean.\n\n";
+            else{
+            double sum{};
+            for(auto val: l)
+                sum += val;                                 //
+            cout <<"The mean is : "<< sum/l.size()<<endl;    
+            cout <<endl;
+            }
+}
+void find_smallest(const vector<int>&l){
+    if (l.size()==0)
+            cout << "Empty list.\n";
+        else {
+            int smallest{l.at(0)};
+            for( auto number:l){
+                if (number < smallest)
+                smallest = number;
+            }
+            cout << "The smallest number is : "<<smallest<<endl;
+            }
+}
+void find_largest(const vector<int>&l){
+    if (l.size()==0)
+            cout <<"Empty list.\n";
+        else {
+            int largest {l[0]};
+            for (auto number :l)
+                if (largest<number)
+                    largest = number;
+            cout <<"The largest number is : "<<largest<<endl;
+        }
+}
