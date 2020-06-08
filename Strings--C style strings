@@ -1,0 +1,56 @@
+#include <iostream>
+#include <cstring>          //for C style string functions
+#include <cctype>           //for character based functions
+using namespace std;
+
+int main()
+{
+//    char my_name [9] {"Shankey"};       // It is    Shankey\0\0
+//    cout <<my_name[2]<<endl;            // a is output.
+//    my_name[7] = 's';
+//    cout <<my_name[7]<<endl;            //Now it becomes  Shankeys\0\0
+    
+    
+
+    char first_name [20] {};
+    char last_name [20] {};
+    char full_name [50] {};
+    char temp [50] {};
+//    cout <<"Enter ur first name: ";
+//    cin >>first_name;
+//    cout <<"Enter ur last name: ";
+//    cin >>last_name;
+//    cout <<"Hello , "<<first_name<<" -your first name has "<<strlen(first_name)<<" characters.\n";      //strlen function doesnt returns an int ,it returns  size_t
+//    cout <<"And , "<<last_name<<" -your last name has "<<strlen(last_name)<<" characters.\n";
+//    strcpy(full_name,first_name);       //copy first_name to full_name
+//    strcat(full_name," ");               //concatenate full_name and a space
+//    strcat(full_name,last_name);         //concatenate last_name to full_name
+//    cout <<"Your full name is : "<<full_name<<endl;
+    
+    
+    
+    
+//    cout <<"Enter ur full name: ";
+//    cin >> full_name;
+//    cout<< "Your full name is "<<full_name<<endl;           //Here output will be Shankey only.
+    cout <<"Enter ur full name: ";
+    cin.getline(full_name,50);                                //Now it shows proper full name.
+    cout<< "Your full name is "<<full_name<<endl; 
+    cout<<"----------\n";
+    strcpy(temp,full_name);
+    if (strcmp(temp,full_name)==0)                            //string compare shows 0 if same.
+        cout <<temp<<" and "<<full_name<<" are the same.\n";
+    else 
+        cout <<temp<<" and "<<full_name<<" are different.\n";
+    cout<<"------------------\n";
+    
+    for (size_t i{} ; i<strlen(full_name) ; ++i)
+        full_name[i] = toupper(full_name[i]);
+    cout<< "Your full name is "<<full_name<<endl; 
+    if (strcmp(temp,full_name)==0)                            //string compare shows 0 if same.
+        cout <<temp<<" and "<<full_name<<" are the same.\n";
+    else 
+        cout <<temp<<" and "<<full_name<<" are different.\n";
+    cout<<"------------------\n";
+    return 0;
+}
