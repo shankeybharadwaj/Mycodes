@@ -1,0 +1,64 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+//void scale_number(int &num);        // Here we are passing the location of the parameter to the function,so we can change its value.
+//int main()                          // and we don't make a copy of the parameter in this case.
+//{
+//    int n=1000;
+//    scale_number(n);
+//    cout <<n<<endl;
+//    return 0;
+//}
+//void scale_number(int &num){
+//    if(num>100)
+//        num=100;
+//}
+
+
+
+
+//void swapper(int &a,int &b);
+//int main(){
+//    int a=4,b=8;
+//    swapper(a,b);
+//    cout<<a<<" "<<b<<endl;
+//    return 0;
+//}
+//void swapper(int &a,int &b){
+//    int c;
+//    c=a;
+//    a=b;
+//    b=c;
+//}
+
+
+
+
+
+//void print(vector<int> v);          //  Here we are using PASS BY VALUE
+//int main(){
+//    vector<int> data{1,2,3,4,5};
+//    print(data);
+//    
+//    return 0;
+//}
+//void print(vector<int> v){
+//    for(auto num:v)
+//        cout<<num<<" ";
+//}
+
+
+
+
+void print(vector<int> &v);          //  Now this is PASS BY REFERENCE
+int main(){
+    vector<int> data{1,2,3,4,5};
+    print(data);
+    
+    return 0;
+}
+void print(vector<int> &v){
+    for(auto num:v)
+        cout<<num<<" ";
+}
