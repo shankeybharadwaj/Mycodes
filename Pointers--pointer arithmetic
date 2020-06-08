@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int z=2;
+    int *ptr{nullptr};
+    ptr=&z;
+    cout<<ptr<<endl;
+    ++ptr;              // Increments a pointer to point to the next array element in case of arrays
+    cout<<ptr<<endl;
+    ptr+=1;
+    cout<<ptr<<endl;
+    ptr+=2;
+    ptr-=1;
+    cout<<ptr<<endl;
+    
+    
+    
+    
+    int *p1,*p2,n,arr[]{1,2,3,4,10};
+    p1=arr;
+    p2=&arr[4];
+    n=p2-p1;       // Determine the number of elements between the pointers
+    cout<<*p1<<" "<<*p2<<endl;      // 1 10
+    cout<<n<<endl;                  // 4
+    cout<<*p1<<endl;
+    p1++;       // p1 now points to arr[1]
+    cout<<*p1<<endl;    // 2
+    --p1;
+    while(*p1!=10){
+        cout<<*p1<<" ";         // 1 2 3 4
+        ++p1;
+    }
+    cout<<"\n------------------------\n";
+    p1=arr;
+    while (*p1!=10){
+        cout<<*p1++<<" ";       // 1 2 3 4    IMPORTANT
+    }
+    cout<<endl;
+    
+    // IMPORTANT =>     *ptr++   This increments the address of the pointer and NOT its value at address as the two operators involved
+    //                           in this have the same preceedence and the associativity is right to left.
+    //                           So here as post increment is there so      *ptr    and then    ptr=ptr+1; 
+    
+    
+    cout<<"\n===========================================\n";
+    
+    
+    string a{"Shankey"}, b{"Shankey"}, c{"James"};
+    string *pa,*pb,*pc;
+    pa=&a;
+    pb=&b;
+    pc=&a;      // Pay attention
+    cout<<boolalpha;
+    cout<<(pa==pb)<<endl;       // false    a and b have same value but different address
+    cout<<(pa==pc)<<endl;       // true
+    
+    cout<<(*pa==*pb)<<endl;     // true
+    cout<<(*pa==*pc)<<endl;     // true
+    
+    
+    
+    
+    
+    char name[]{"Shankey"};     // C style string
+    char *ptr1{name},*ptr2{&name[3]};
+    cout<<"In the string Shankey "<<*ptr2<<" is "<<(ptr2-ptr1)<<" characters away from "<<*ptr1<<endl;
+    return 0;
+}
