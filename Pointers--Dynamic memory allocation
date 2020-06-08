@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int *int_ptr{nullptr};
+    int_ptr = new int;          // ALLOCATE AN INTEGER ON THE HEAP 
+    cout<<int_ptr<<endl;
+    cout<<*int_ptr<<endl;       // garbage
+    *int_ptr=100;
+    cout<<*int_ptr<<endl;       // 100
+    delete int_ptr;             // FREES the allocated storage
+    cout<<*int_ptr<<endl;       // GARBAGE    
+    
+    
+    
+    // allocating storage for ARRAYS
+    int *array_ptr{nullptr};
+    int size{};
+    cout<<"How long you want the array to be??";
+    cin>>size;
+    array_ptr = new int[size];            // ALLOCATE ARRAY ON THE HEAP
+    // we can access the array 
+    cout << array_ptr<<endl;        // prints the address of the first element of the array
+    delete [] array_ptr;            // frees the allocated storage
+    return 0;
+}
