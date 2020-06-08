@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int scores[]{80,90,100};
+    cout<<scores<<endl;         // &scores[0]
+    cout<<*scores<<endl;        // 80
+    int *score_ptr{scores};
+    
+    cout<<score_ptr<<endl;      // &scores[0]
+    cout<<*score_ptr<<endl;     // 80
+    
+    // Array subscript notation
+    cout<<scores[0]<<endl;          // 80
+    cout<<scores[1]<<endl;          // 90
+    cout<<scores[2]<<endl;          // 100
+    
+    // Pointer subscript notation
+    cout<<score_ptr[0]<<endl;       // 80   We can use array name and pointer name interchangeably.
+    cout<<score_ptr[1]<<endl;       // 90
+    cout<<score_ptr[2]<<endl;       // 100
+    
+    // Array offset notation
+    cout<<*(scores)<<endl;          // 80
+    cout<<*(scores+1)<<endl;        // 90
+    cout<<*(scores+3)<<endl;        // 100
+    
+    // Pointer offset notation
+    cout<<*(score_ptr)<<endl;       // 80
+    cout<<*(score_ptr+1)<<endl;     // 90
+    cout<<*(score_ptr+2)<<endl;     // 100
+
+
+    cout<<(score_ptr)<<endl;      // 0x61ff10
+    cout<<(scorcoute_ptr + 1)<<endl;  // 0x61ff14
+    cout<<(score_ptr + 2)<<endl;  // 0x61ff18
+    return 0;
+}
