@@ -1,0 +1,29 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    char vowels [] {'a','e','i','o','u'};
+    cout <<"The first vowel is "<< vowels[0]<<endl;
+    cout <<"The second vowel is "<< vowels[1]<<endl;
+    cout <<"The third vowel is "<< vowels[2]<<endl;
+    cout <<"The fourth vowel is "<< vowels[3]<<endl;
+    cout << "The fifth and last vowel is "<< vowels[4]<<endl;
+    cout << "\nEnter new vowels: ";
+    cin >> vowels[0];
+    cin >> vowels[1];
+    cin >> vowels[2];
+    cin >> vowels[3];
+    cin >> vowels[4];
+    cout << "\nThe updated arrays are : ";
+    cout <<"\nThe first vowel is "<< vowels[0]<<endl;
+    cout <<"The second vowel is "<< vowels[1]<<endl;
+    cout <<"The third vowel is "<< vowels[2]<<endl;
+    cout <<"The fourth vowel is "<< vowels[3]<<endl;
+    cout << "The fifth and last vowel is "<< vowels[4]<<endl;
+    
+    int movie_review [2][3]{{1,2,4},{3,4,8}};
+    cout << movie_review[1][1]<<endl;
+
+    return 0;
+}
