@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+
+int main()
+{
+    int counter {10} ;                             //Never use it twice for the same variable in the same statement.
+    int result {0};
+    counter = counter + 1;
+    cout <<"Counter : "  <<counter <<endl;
+    counter++ ;
+    cout << "Counter : "<< counter << endl;
+    ++counter;
+    cout << "Counter : "<< counter << endl;
+    counter--;
+    cout << "Counter : "<< counter << endl;
+    //====================================================
+    
+    cout << "=======================================\n";
+    counter = 10;                                            // written below is Pre increment
+    result = 0 ;                                             /*Here first counter = counter +1 and then result = counter . OR simply result = ++counter means result = counter and counter is increased by 1 before it is used. */            
+    //result = ++counter;                                                           
+    cout << "Counter : "<< counter << endl;
+    cout << "Result : "<< ++counter << endl;                //From this line onwards counter will be 11.
+    cout << "Counter : "<< counter << endl;                 // Here output is 11.
+    cout << "==================================\n";
+    //Post increment
+    counter=10;
+    result=0;
+    result = counter++ ;                                //This means result = counter and THEN counter = counter +1 .
+    cout << "Counter : "<< counter << endl;             // 11
+    cout << "Result : " << result<<endl;                // 10
+    cout << "Counter : "<< counter << endl;             // 11
+    return 0;
+}
