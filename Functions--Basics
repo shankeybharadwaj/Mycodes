@@ -1,0 +1,50 @@
+#include <iostream>
+#include <cmath>                // Must include this maths library
+using namespace std;
+
+//void say_world(){             // void functions need not return any value..............!!!!!!!!!!!!1
+//    cout <<"World\n";
+//}
+//void say_hello(){
+//    cout <<"hello ";
+//    say_world();
+//}
+//
+//int main()
+//{
+////    cout <<sqrt(81)<<endl;      // 9
+////    double result;
+////    result = pow(2,5);          // 32
+////    cout << result<<end
+//    
+//    say_hello();
+
+
+
+
+
+    
+const double pi = 3.14159;
+double calc_area_circle(double r){
+    return pi*r*r;
+}
+void area_circle(){
+    double r;
+    cout <<"Enter the radius: ";
+    cin>>r;
+    cout <<"The area of circle is : "<<calc_area_circle(r)<<endl;
+}
+double calc_vol_cylinder(double r,double h){        // Pay attention here!!!!
+    return pi*r*r*h;                // OR    return calc_area_circle(r)*h;
+}
+void volume_cylinder(){
+    double r,h;
+    cout <<"Enter the radius and height with a space : ";
+    cin>>r>>h;
+    cout <<"The volume of the cylinder is :  "<<calc_vol_cylinder(r,h)<<endl;
+}
+int main(){
+    area_circle();    
+    volume_cylinder();
+    return 0;
+}
