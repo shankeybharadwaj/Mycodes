@@ -1,0 +1,63 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+int main()
+{
+    int num{10};
+    cout<<"Address of num is : "<<&num<<endl;
+    
+    int *p;             // REMEMBER to initialise the pointers
+    cout<<"The value of p : "<<p<<endl;         // Garbage value
+    cout<<"The size of p: "<<sizeof(p)<<endl;
+    cout<<"The address of p is: "<<&p<<endl;
+    p = nullptr;        // initialising the pointer This pointer points nowhere.
+    cout<<"The value of p is : "<<p<<endl;          // 0
+    
+    
+    int *p1{nullptr};
+    double *p2{nullptr};
+    unsigned long long *p3{nullptr};
+    vector <string> *p4{nullptr};
+    string *p5{nullptr};
+    cout<<"\nSize of p1: "<<sizeof(p1)<<endl;     // 4
+    cout<<"Size of p2: "<<sizeof(p2)<<endl;     // 4
+    cout<<"Size of p3: "<<sizeof(p3)<<endl;     // 4
+    cout<<"Size of p4: "<<sizeof(p4)<<endl;     // 4
+    cout<<"Size of p5: "<<sizeof(p5)<<endl;     // 4
+    
+    
+    
+    int score{100};
+    double temp{98.6};
+    int *score_ptr{&score};
+    cout<<"value of score: "<<score<<endl;
+    cout<<"Address of score: "<<&score<<endl;
+    cout<<"Address of score: "<<score_ptr<<endl;
+    // score_ptr=&temp;  ERROR
+    cout<<"Value of score: "<<*score_ptr<<endl;
+    *score_ptr=200;
+    cout<<score<<" "<<*score_ptr<<endl;
+    
+    
+    
+    string name{"Shanky"};
+    string *string_ptr{&name};
+    cout<<*string_ptr<<endl;
+    name="James";
+    cout<<*string_ptr<<endl;
+    
+    
+    
+    
+    vector<string> fruits{"apple","banana","mango"};
+    vector<string> *vector_ptr{&fruits};
+    cout<<fruits.at(0)<<endl;           // apple
+    cout<<(*vector_ptr).at(0)<<endl;    // apple
+    
+    for(auto name: *vector_ptr)
+        cout<<name<<" ";
+    cout<<endl;
+    return 0;
+}
