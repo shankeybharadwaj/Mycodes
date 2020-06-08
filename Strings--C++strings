@@ -1,0 +1,126 @@
+#include <iostream>
+#include <string>                   //Must include.
+using namespace std;
+
+int main()
+{
+    //Declaration of strings ======
+//    string s1 ;                             // empty   
+//    string s2 {"Shankey"};                  // Shankey
+//    string s3 {s2};                         // Shankey
+//    string s4 {"Shankey",3};                // Sha
+//    string s5 {s3,0,2};                     // Sh - Here 0 is the starting index and 2 is size
+//    string s6 {3,'S'};                      // SSS
+
+
+
+
+//    string s1 ;
+//    s1 = "Shankey";
+//    string s2 {"Hello"};
+//    s2 = s1;                    // Now s2 also contains Shankey.
+    
+    
+    
+//    string part1 {"C++"};
+//    string part2 {"is a powerful"};
+//    string sentence ;
+//    sentence = part1 + " " + part2 + " language.";     // By this method we can concatenate C++ string with C++ or C style strings only.
+//    cout << sentence<<endl;
+//      // sentence = "C++" + " is powerful."     This is illegal as this method is not for concatenating C style strings.
+        // sentence = "C++" + " is powerful." + part1 <<endl;   This is also wrong as adding of two C style strings is taking place
+    
+    
+//    string s1 ;
+//    s1 = "Shankey";
+//    cout << s1[0]<<endl;
+//    cout << s1.at(0)<<endl;
+//    for (char c : s1)
+//        cout << c<<endl;
+    
+
+
+    // Substrings  ======  object.substr(start_index,length)
+//    string s1 {"This is a test"};
+//    cout << s1.substr(0,4)<<endl;
+//    cout << s1.substr(5,2)<<endl;
+//    cout << s1.substr(10,4)<<endl;
+    
+    
+    
+    // find =========    object.find(search_string)
+//    cout << s1.find("This")<<endl;
+//    cout << s1.find("is")<<endl;            // Here "is" is of This     output = 2
+//    cout << s1.find("is",4)<<endl;          // Now output will be 5 as it starts checking from index(4)
+//    cout << s1.find("a")<<endl;
+//    cout << s1.find('a')<<endl;
+//    cout << s1.find("test")<<endl;
+//    
+    
+    
+    // clear and erase method
+//    string s1 {"Shankey"};
+//    cout << s1.erase(0,1)<<endl;        // hankey
+//    cout << s1.erase(0,3)<<endl;        // key   As now 3 will be erased from hankey 
+//    
+    
+    
+//    cout << s1.length()<<endl;    // 7
+//    s1 += " Bharadwaj";
+//    cout << s1.length()<<endl;    // 17
+
+
+
+
+    // Input and getline
+//    string s1 ;
+////    cin >> s1;
+////    cout << s1 <<endl ;            // only Shankey will be displayed
+////    getline(cin , s1);
+////    cout <<s1 <<endl;                // Now Shankey Bharadwaj is printed by this method
+//    getline(cin , s1 , 'n');
+//    cout <<s1 <<endl;                   // Sha    As it'll stop before n
+    
+    
+    
+//    string s2 ;
+//    string s3 {"apple"};
+//    string s4 {"mango"};
+//    string s5 {"banana"};
+//    string s6 {s3};
+//    cout <<boolalpha;
+//    cout<< s3<<" == "<<s6<<" is "<<(s3 == s6 )<<endl;
+//    cout <<s3<<" > "<<s5<<" is "<<(s3 > s5) <<endl;
+//    cout <<s3<<" < "<<s5<<" is "<<(s3 < s5) <<endl;
+//    cout <<s3 <<" > "<<" Apple is "<<(s3>"Apple")<<endl;        // True 
+
+
+
+
+//    string s1 ;
+//    s1 = "Shankey";         
+//    s1[0] = 'P';                // here I am assining P to the first element ih Shankey
+//    // OR s1.at(0)='P';
+//    cout <<s1<<endl;            // Phankey
+
+
+
+    
+//    for (char c: s1)
+//        cout << c ;
+//    cout <<endl;
+
+
+
+
+    // find ===================
+    string s1 {"This is a test"};
+    string word ;
+    cin >> word;
+    size_t position = s1.find(word);        // NOTE   cin must come before this line.
+    if (position != string::npos)
+        cout << "The entered word is at position : "<<position<<endl;
+    else 
+        cout << "The entered word was not found."<<endl;
+    return 0;
+}
