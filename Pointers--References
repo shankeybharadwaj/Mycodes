@@ -1,0 +1,61 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int main()
+{
+    // In case of RANGE BASED FOR LOOPS that DOES NOT USE REFERENCES if we change something, then its original value remains SAME
+    // Only the value of copied variable is changed
+    
+    vector <string> fruits{"apple","banana","mango"};
+    for(auto str:fruits)
+        str="grapes";       // Changes the copy
+                            // str is a COPY of each vector element
+    for(auto str:fruits)
+        cout<<str<<" ";     // apple banana mango
+    cout<<endl;
+
+
+    
+    cout<<"\n----------------------------------\n";
+    int arr[]{1,2,3,4,5};
+    for(auto a:arr)
+        a=8;                //  In
+    for(auto a:arr)
+        cout<<a<<" ";       // 1 2 3 4 5 
+    cout<<endl;
+    
+    for(int i=0;i<5;++i)
+        arr[i]=8;           // Now the original array elements change to 8
+    for(int i=0;i<5;++i)
+        cout<<arr[i]<<" ";  // 8 8 8 8 8
+    cout<<endl;
+    
+    
+    
+    // NOW using references 
+    for(auto &str:fruits)
+        str="grapes";       // Changes the ACTUAL
+        
+    for(auto str:fruits)
+        cout<<str<<" ";     // grapes grapes grapes
+    cout<<endl;
+    
+    cout<<"\n==================================================\n";
+    
+    
+    int num{100};
+    int &ref{num};      // ref is an alias to num
+    // int &ref = 100;  // ERROR as 100 is an R-value
+    cout<<num<<endl;    // 100
+    cout<<ref<<endl;    // 100   
+    
+    num=200;
+    cout<<num<<endl;    // 200
+    cout<<ref<<endl;    // 200 
+
+    ref=300;
+    cout<<num<<endl;    // 300
+    cout<<ref<<endl;    // 300   
+    return 0;
+}
