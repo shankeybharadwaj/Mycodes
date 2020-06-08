@@ -1,0 +1,89 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+//int add_numbers (int,int);      // Prototype
+//int main(){
+//    int result{};
+//    result= add_numbers(100,200);
+//    cout <<result<<endl;
+//    return 0;
+//}
+//int add_numbers(int a,int b){
+//    return a+b;
+//}
+
+
+
+
+
+
+//void  say_hello(std::string name){
+//    cout <<"Hello "<<name<<endl;
+//}
+//say_hello ("Shankey");
+//std::string my_dog{"Fluffy"};
+//say_hello(my_dog);
+
+
+
+
+
+
+//void param_test (int formal){
+//    cout<<formal<<endl;
+//    formal=100;
+//    cout<<formal<<endl;
+//}
+//int main(){
+//    int actual{50};                     // 50
+//    param_test(actual);                 // 100
+//    cout<<actual<<endl;                 //50        is the output..........
+//return 0;
+//}
+
+
+
+
+
+
+
+void pass_by_value1(int num);
+void pass_by_value2(string s);
+void pass_by_value3(vector<string>v);
+void print_vector(vector<string>v);
+
+void pass_by_value1(int num){
+    num=1000;
+}
+void pass_by_value2(string s){
+    s="Changed";
+}
+void pass_by_value3(vector<string>v){
+    v.clear();           // Deletes all vector elements                       
+}
+void print_vector(vector<string>v){
+    for(auto s:v)
+        cout<<s<<" ";
+    cout<<endl;
+}
+int main(){
+    int num;
+    num=10;
+    cout <<"num before calling pass_by_value1 is : "<<num<<endl;             // 10
+    pass_by_value1(num);
+    cout <<"num after calling pass_by_value1 is : "<<num<<endl;              // 10
+    
+    string name {"Shankey"};
+    cout <<"name before calling pass_by_value2 is : "<<name<<endl;          // Shankey
+    pass_by_value2(name);
+    cout <<"name after calling pass_by_value2 is : "<<name<<endl;           // Shankey
+    
+    vector <string> items{"Pen","Paper","Mobile"};
+    cout << "items before calling pass_by_value3 is : ";
+    print_vector(items);
+    pass_by_value3(items);
+    cout << "items after calling pass_by_value3 is : ";
+    print_vector(items);
+}
