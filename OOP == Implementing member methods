@@ -1,0 +1,69 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+//Inside the class declaration
+class Account{
+private:
+    string name;
+    double balance;
+public:
+    void set_balance(double bal){
+        balance=bal;
+    }
+    double get_balance(){
+        return balance;
+    }
+    // Now these below will be declared outside the class declaration
+    void set_name(string n);
+    string get_name();
+    bool deposit(double amount);
+    bool withdraw(double amount);
+};
+
+void Account::set_name(string n){
+    name=n;
+}
+string Account::get_name(){
+    return name;
+}
+bool Account::deposit(double amount){
+    //if verify account
+    balance += amount;
+    return true;
+}
+bool Account::withdraw(double amount){
+    if(balance-amount>=0){
+        balance-=amount;
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+
+int main(){
+    Account shanky_account;
+    //shanky_account.name="Shanky's account";     // Cannot change the name this way as it is private
+    shanky_account.set_name("Shanky's account");
+    shanky_account.set_balance(1000.0);
+    cout<<shanky_account.get_balance()<<endl;   // 1000.0
+    if(shanky_account.deposit(200.0))
+        cout<<"Deposited OK"<<endl;
+    else 
+        cout<<"Deposit not allowed"<<endl;
+    cout<<shanky_account.get_balance()<<endl;   // 1200.0
+    if(shanky_account.withdraw(500.0))
+        cout<<"Withdrawl OK\n";
+    else 
+        cout<<"Not sufficient funds\n";
+    cout<<shanky_account.get_balance()<<endl;   // 700.0
+    if(shanky_account.withdraw(1500.0))
+        cout<<"Withdrawl OK\n";
+    else 
+        cout<<"Not sufficient funds\n";
+    
+    return 0;
+}
