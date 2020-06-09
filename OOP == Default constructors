@@ -1,0 +1,42 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Account{
+private:
+    string name;
+    double balance;
+public:
+     
+    Account(){          // User defined No args constructer
+        name = "None";
+        balance=0.0;
+    }
+    // However , once we have provided a constructer , the compiler will then not provide any default constructor(i.e. it will not 
+    // provide the No args constructer.Now if we declare a class object with no args then it will be problem if No args constructer 
+    // is not there. So in that case we have to provide a No args constructer also along with other constructers.
+    
+    Account(string name_val){
+        name=name_val;
+        balance=0.0;
+    }
+    Account(string s,double bal){       // Account - No default constructer
+        name=s;
+        balance=bal;
+    }
+    string get_name(){
+        return name;
+    }
+    bool deposit(double amount);
+    bool withdraw(double amount);
+};
+
+int main(){
+    Account hero_account;       // It contains - None,0.0
+    Account frank_account{"Frank"};     // It contains - Frank,0.0
+    Account shanky_account{"Shankey",1000.0};   // It contains - Shankey,1000.0
+    Account *enemy = new Account("Enemy",20);   // It contains - Enemy,20.0
+    cout<<shanky_account.get_name()<<endl;      // Shankey
+    cout<<hero_account.get_name()<<endl;        // None
+    return 0;
+}
