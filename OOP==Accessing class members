@@ -1,0 +1,72 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+class Player{
+public:
+    // attribute
+    string name{"Player1"};
+    int health{100};
+    int xp{3};
+    // methods (can pass functions)
+    void talk(string text_to_say){
+        cout<<name<<" says "<<text_to_say<<endl;
+    }
+    bool is_dead();
+};
+
+class Account{
+public:
+    // attributes
+    string name{"Account1"};
+    double balance{0.0};
+    // methods
+    bool withdraw(double amount){balance-=amount;cout<<"In withdrawl\n";}
+    bool deposit(double amount){balance+=amount;cout<<"In deposit\n";}
+};
+
+int main() {
+    
+    // Using the dot operator
+    
+    Player shanky;
+    Player dhoni;
+    shanky.name = "Shankey";
+    shanky.health=100;
+    shanky.xp=3;
+    cout<<shanky.health<<endl;      // 100
+    shanky.talk("Hi! there....");   // Shankey says Hi! there....
+    Player *enemy = new Player;
+    (*enemy).name="Enemy";
+    (*enemy).health = 100;
+    enemy->xp=12;
+    enemy->talk("I will destroy you.");
+    
+    
+    
+    
+    Account shanky_account;
+    Account frank_account;
+    shanky_account.name = "Shanky's account";
+    frank_account.name = "Frank's account"; 
+    shanky_account.balance=2500.00;
+    shanky_account.deposit(1000.00);
+    cout<<shanky_account.balance<<endl;     // 3500.00
+    Account *mary_account = new Account;    // Pointer to account object
+    (*mary_account).deposit(1000.00);
+    (*mary_account).balance;    // 1000.00
+    cout<<(*mary_account).balance<<endl;
+    
+    // Or use the member of pointer opeartor(Arrow operator)
+    Account *Harry_account = new Account;
+    Harry_account -> balance;
+    Harry_account -> deposit(1000.00);
+    
+    
+    
+    return 0;
+}
