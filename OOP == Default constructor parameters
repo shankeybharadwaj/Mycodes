@@ -1,0 +1,34 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Player{
+private:
+    string name;
+    int health;
+    int xp;
+public:
+    // constructer with default parameter values
+    Player(string s_val="None",int health_val=0,int xp_val=0);      // Here initialise by '=' sign
+    void get_name(){
+        cout<<name<<endl;
+    }
+};
+
+//NOTE: Since this single constructer is doing the job of several constructers , so we do'nt have to declare any other ambigous 
+//      constructor. Suppose we declare a No args constructer also then there will be ERROR.
+Player::Player(string s_val,int health_val,int xp_val):name{s_val},health {health_val},xp{xp_val}{
+    cout<<"Three args constructer\n";
+}
+
+int main(){
+    Player hero;                        // None,0,0
+    Player villain{"Villain"};          // Villain,0,0
+    Player frank{"Frank",100};          // Frank,100,0
+    Player shanky{"Shankey",100,20};    // Shankey,100,20
+    hero.get_name();    // None
+    villain.get_name(); // Villain
+    frank.get_name();   // Frank
+    shanky.get_name();  // Shankey
+    return 0;
+}
