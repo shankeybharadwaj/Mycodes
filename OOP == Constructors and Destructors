@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Player{
+private:
+    string name;
+    int health;
+    int xp;
+public:
+    void set_name(string s){
+        name=s;
+    }
+    // Overloading constructers
+    Player(){
+        cout<<"No args constructer called\n";
+    }
+    Player(string name,int health,int xp){
+        cout<<"Three args constructer called\n";
+    }
+    Player(string name){
+        cout<<"String arg constructer called\n";
+    }
+    // Destructor-- Only one is allowed per class. Called automatically
+    ~Player(){
+        cout<<"Destructor called for "<<name<<endl;
+    }
+};
+
+int main() {
+    // Creating objects
+    {
+    Player slayer;      // Here the No args constructor is called
+    slayer.set_name("Slayer");
+    }   // Destructor called for Slayer
+    {
+    Player shanky{"Shanky",100,10};     // The constructor that accepts a string and two integers will be called
+    shanky.set_name("Shankey");
+    }   // Destructor called for Shankey
+    Player frank{"Frank"};      // The constructers that accepts a string will be called
+    frank.set_name("Frank");
+    Player *boss = new Player;  // No args constructor is called
+    boss->set_name("Boss");
+    Player *enemy = new Player("Enemy",100,0);       // Initialising using Three args Constructer
+    enemy->set_name("Enemy");
+    // use it
+    delete boss;     // Destructor called
+    delete enemy;    // Destructor called
+    return 0;
+}
