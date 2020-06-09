@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+class Player{
+private:        // Accessible only by members or friends of the class
+    // attribute
+    string name{"Player1"};
+    int health{100};
+    int xp{3};
+public:         // accessible everywhere
+    // methods (can pass functions)
+    void talk(string text_to_say){
+        cout<<name<<" says "<<text_to_say<<endl;
+    }
+    bool is_dead();
+};
+
+int main(){
+    Player shanky;
+    //shanky.name="Shankey";     // ERROR as player name is private. Accessible only by members or friends of the class
+    //shanky.health=100;         // ERROR
+    shanky.talk("Hi there");     // OK
+    Player *enemy = new Player;
+    //enemy->xp=12;           // error
+    enemy->talk("I will hunt you...");  // OK
+    return 0;
+}
