@@ -1,0 +1,32 @@
+#include <iostream>
+using namespace std;
+
+class Player{
+// Friend can be a regular function or a method or member function of the other class.
+    friend void display_player(Player &p);
+    // friend void other_class::display_player(Player &p);  // member method of another class as a friend
+    // friend class other_class;        // the complete class other_class is a friend of Player class-- all methods of other_class can access private attributes of player class.
+private:
+    string name;
+    int health;
+    int xp;
+public:
+    // constructer with default parameter values
+    Player(string s_val="None",int health_val=0,int xp_val=0);      // Here initialise by '=' sign
+    void get_name(){
+        cout<<name<<endl;
+    }
+};
+Player::Player(string s_val,int health_val,int xp_val):name{s_val},health {health_val},xp{xp_val}{
+    cout<<"Three args constructer\n";
+}
+void display_player(Player &p){     // It has access to all private class members of Player class.And it can change them also as passing by reference here.
+    cout<<p.name<<endl;
+    cout<<p.health<<endl;
+    cout<<p.xp<<endl;
+}
+
+int main(){
+    
+    return 0;
+}
