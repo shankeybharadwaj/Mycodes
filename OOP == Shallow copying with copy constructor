@@ -1,0 +1,54 @@
+#include <iostream>
+using namespace std;
+
+class Shallow{
+private:
+    int *data;
+public:
+    void set_data_value(int d){*data=d;}
+    int get_data_value(){return *data;}
+    // constructor
+    Shallow(int d);
+    // copy constructor
+    Shallow(const Shallow &source);
+    // destructor
+    ~Shallow();
+};
+
+Shallow::Shallow(int d){
+    data=new int;
+    *data=d;
+}
+Shallow::Shallow(const Shallow &source):data(source.data){
+    cout<<"Copy constructor- shallow copy\n";
+}
+Shallow::~Shallow(){
+    delete data;
+    cout<<"Destructor freeing data\n";
+}
+void display_shallow(Shallow s){        // This is a regular funcion and not a member function
+    cout<<s.get_data_value()<<endl;
+}
+
+// THIS PROGRAM COULD CRASH DUE TO SHALLOW COPYING.
+// Here revise the video-148 for explanation.
+
+
+// When we 'delete' a pointer variable, we don't do anything to the pointer's value or to the data on the heap. What happens is the runtime system 'marks' the area that was allocated on the heap as 'ready to be used again'.
+// So when we say invalid data, we mean the pointer is pointing to an area in memory that it no longer owns. If we use it, the behavior is undefined -- it might work, it might not, or it might crash.
+// C++ is all about execution efficiency, so it doesn't 'waste' time by 'clearing' out memory or pointers.
+
+int main(){
+    Shallow obj1{100};
+    display_shallow(obj1);  // Copy constructor is called and s stores the obj1's  'data'. Then After displaying '100'  
+                            // the copy 's' is destroyed and the memori it is allocated is freed by the destructor . As a result ,
+                            //obj1 now points to invalid memory but still has the value = 100. 
+    
+    Shallow obj2{obj1};     // Now obj2 also points to the same invalid memory, and has *data value =100
+    obj2.set_data_value(10000);     // Both objects have 10000
+    //display_shallow(obj2);
+     
+    // Now both objects have to destroyed, but they are already pointing to invalid memory. And this is the PROBLEM.
+    // THE PROGRAM 'MIGHT' CRASH.
+    return 0;
+}
