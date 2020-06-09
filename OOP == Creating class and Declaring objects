@@ -1,0 +1,43 @@
+#include <iostream>
+#include <vector>
+#include <string>
+using namespace std;
+
+class Player{
+    // attribute
+    string name{"Player1"};
+    int health{100};
+    int xp{3};
+    // methods (can pass functions)
+    void talk(string text_to_say);
+    bool is_dead();
+};
+        
+class Account(){
+    // attributes
+    string name{"Account1"};
+    double balance{0.0};
+    // methods
+    bool withdraw(double amount);
+    bool deposit(double amount);
+};
+    
+int main(){
+    
+    Player Shankey;     // Shankey is an object of class Player
+    Player Hero;
+    Player *enemy{nullptr};   // dynamically allocating memory to     pointer to Player object 
+    enemy = new Player;
+    delete enemy;
+    
+    
+    Account shanky_account;
+    Account frank_account;
+    Account *mary_account = new Account;
+    delete mary_account;
+    Account accounts[]{shanky_account,frank_account};
+    vector<Account> accounts1{shanky_account};
+    accounts1.push_back(frank_account);
+    
+    return 0;
+}
