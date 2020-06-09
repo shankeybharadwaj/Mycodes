@@ -1,0 +1,78 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+
+class Move{
+private:
+    int *data;      // raw pointer
+public:
+    void set_data_value(int d){*data=d;}
+    int get_data_value(){return *data;}
+    Move(int d);    // constructor
+    Move(const Move &source);   // copy constructor
+    Move(Move &&source)noexcept;  // Move constructor   -- With this we are moving the resources and not copying them like copy constr.
+    ~Move();        // destructor
+};
+
+Move::Move(int d){
+    data = new int;
+    *data = d;
+    cout<<"constructor for: "<<*data<<endl;
+}
+Move::Move(const Move &source):Move{*source.data}{
+    cout<<"Copy constructor - Deep copy for : "<<*data<<endl;
+}
+Move::Move(Move &&source) noexcept 
+    :data{source.data}{
+    source.data = nullptr;
+    cout<<"Move constructor- moving resource: "<<*data<<endl;
+}
+Move::~Move(){
+    if(data!=nullptr)
+        cout<<"Destructor freeing data for: "<<*data<<endl;
+    else   
+        cout<<"Destructor freeing data\n";
+    delete data;
+}
+
+
+int main(){
+
+//    int x=100;
+//    int &l_ref=x;       // L value reference        .In this case, x is an L value,it has got a name and is addressable.
+//    l_ref=10;           // changes x to 100
+//    
+//    int &&r_ref = 200;      // R value reference
+//    r_ref=300;              // changes r_ref to 300
+//    //r_ref = x;      // ERROR  as we are assigning an L value to an R value reference
+//    
+//    void func(int &num);
+//    func(x);    // calls func() , x is an L value
+//    //funx(200);  // ERROR    - 200 is an R value
+//   
+//    void func1(int &&number);
+//    func1(200);      // OK
+//    //func1(x);        // ERROR
+//    
+//    // If we overload the functions above (by giving the same name to both-func), then NO ERROR.
+   
+    vector<Move> vec;
+    vec.push_back(Move{10});
+    vec.push_back(Move{20});
+    vec.push_back(Move{30});
+    vec.push_back(Move{40});
+    vec.push_back(Move{50});
+    vec.push_back(Move{60});
+    vec.push_back(Move{70});
+    vec.push_back(Move{80});
+    return 0;
+}
+
+//Q/A ==============================
+//>Why is Move constructor calling data containing 10 second time?
+//=>The vector is probably expanding and its contents are being moved to the new storage area.
+//You should use move semantics when your class 'owns' a resource that will benefit from being moved and isn't already moveable.
+//I know that sounds like a pretty vague statement, but that's the case.
+//If your class has attributes that are all copyable and moveable, then you don't need to implement copy or move semantics because 
+//the default behavior will work fine. However, if you own something like a pointer to dynamic storage, then this will benefit from 
+//move semantics rather than being deep copied all the time when you have a r-value.
