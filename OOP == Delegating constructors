@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Player{
+private:
+    string name;
+    int health;
+    int xp;
+public:
+    Player();
+    Player(string s);
+    Player(string n,int h,int x);
+};
+// This method of delegating constructors can be used in this way only.
+Player::Player(string name_val,int health_val,int xp_val):name{name_val},health{health_val},xp{xp_val}{
+    cout<<"Three args constructor\n";
+}
+Player::Player():Player{"None",0,0}{       // Here instead of initialing it again in the similiar way we call the three args constructor 
+    cout<<"No args constructor\n";      // with the required data.
+}
+Player::Player(string s):Player{s,0,0}{
+    cout<<"One args constructor\n";
+}
+
+int main(){
+    Player empty;
+    Player hero{"Hero"};   
+    Player shanky{"Shankey",100,20};
+    
+    return 0;
+}
