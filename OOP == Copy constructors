@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Player{
+private:
+    string name;
+    int health;
+    int xp;
+public:
+    string get_name(){return name;}
+    int get_health(){return health;}
+    int get_xp(){return xp;}
+    // constructer with default parameter values
+    Player(string s_val="None",int health_val=0,int xp_val=0);      // Here initialise by '=' sign
+    // Copy Constructor
+    Player(const Player &source);
+    // Destructor
+    ~Player(){
+        cout<<"Destructor called for : "<<name<<endl;
+    }
+};
+Player::Player(string s_val,int health_val,int xp_val):name{s_val},health {health_val},xp{xp_val}{
+    cout<<"Three args constructer\n";
+}
+//Player create_super_enemy(){
+//        Player an_enemy{"Super enemy",1000,1000};
+//        return an_enemy;        // A COPY of an_enemy is returned
+//}
+
+Player::Player(const Player &source):name{source.name},health{source.health},xp{source.xp}{     // Or we can call Three args constructor as :name{source.name},health{source.health},xp{source.xp}
+    cout<<"Copy constructor- made copy of: "<<source.name<<endl;
+}    
+
+void display_player(Player p){
+    cout<<"Name: "<<p.get_name()<<endl;
+    cout<<"Health: "<<p.get_health()<<endl;
+    cout<<"XP: "<<p.get_xp()<<endl;
+}       // At this line destructor for p(copy) will be called.
+
+
+
+int main(){
+//    Player enemy;
+//    enemy=create_super_enemy();
+//    Player hero{"Hero",100,20};
+//    Player another_hero{hero};      // A COPY of hero is made. 
+
+    Player empty;
+    display_player(empty);      // Remember that the copy of empty is sent(i.e. 'p')into the function and then that copy also has to be destroyed.
+    Player hero{"Herooo"};
+    Player frank{"Frank",100};
+    Player shanky{"Shankey",100,50};
+    Player my_new_object{shanky};       // Call for Copy constructor
+    return 0;
+}
+// DESTRUCTOR GETS CALLED AUTOMATICALLY WHEN OBJECT GOES OUT OF SCOPE.
+
+
+// NOTE:
+// C++ provides default Copy constructor.
+// But Always provide user defined Copy constructer if you are using raw pointers.
+// Always implement the copy constructor with a const reference parameter.
+// Use STL classes as they alredy provide copy constructors.
+// Avoid using raw pointer data members if possible.
