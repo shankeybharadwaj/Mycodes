@@ -1,0 +1,203 @@
+// ===========================================================
+// Movie.h  file
+// ===========================================================
+
+
+#ifndef _MOVIE_H_
+#define _MOVIE_H_
+#include<iostream>
+using namespace std;
+#include<string>
+
+class Movie
+{
+    friend class Movies;
+    string name;
+    string rating;
+    int watched;
+public:
+    Movie(string n,string r,int w);
+    Movie(const Movie &source);
+    ~Movie();
+    void set_name(string n){
+        name =n;
+    }
+    string get_name()const{return name;}
+    void set_rating(string r){
+        rating=r;
+    }
+    string get_rating()const{return rating;}
+    void set_watched(int w){
+        watched=w;
+    }
+    int get_watched()const{return watched;}
+    
+    void increment();
+        
+    void display()const;
+    
+};
+
+#endif // _MOVIE_H_
+
+
+// ===========================================================
+// Movie.cpp  file
+// ===========================================================
+
+#include "Movie.h"
+#include<iostream>
+using namespace std;
+#include<string>
+
+Movie::Movie(string n,string r,int w):name{n},rating{r},watched{w}{
+    
+}
+Movie::Movie(const Movie &source):Movie{source.name,source.rating,source.watched}{
+    //empty as they are not needed because No use of raw pointers here.
+}
+Movie::~Movie(){
+     //empty as they are not needed because No use of raw pointers here.
+}
+void Movie::increment(){
+    ++watched;
+}
+
+void Movie::display()const{
+    cout<<name<<", "<<rating<<", "<<watched<<endl;
+}
+
+
+
+// ===========================================================
+// Movies.h  file
+// ===========================================================
+
+#ifndef _MOVIES_H_
+#define _MOVIES_H_
+#include<iostream>
+#include <string>
+#include<vector>
+#include "Movie.h"
+using namespace std;
+
+class Movies
+{
+    vector<Movie> movies;
+public:
+    Movies();
+    ~Movies();
+    bool add_movie(string n,string r,int w);
+    bool increment_watched(string n);
+    void display()const;
+};
+
+#endif // _MOVIES_H_
+
+
+
+// ===========================================================
+// Movies.cpp  file
+// ===========================================================
+
+#include "Movies.h"
+#include <string>
+#include<iostream>
+using namespace std;
+
+Movies::Movies(){
+    
+}
+Movies::~Movies(){
+    
+}
+bool Movies::add_movie(string n,string r,int w){
+    for(const auto &v:movies){
+        if(v.get_name()==n){
+            //cout<<"Already exists\n";
+            return false;
+            
+        }
+        
+    }
+    Movie m{n,r,w};
+    movies.push_back(m);
+    //cout<<m.get_name()<<" added\n";
+    return true;
+}
+bool Movies::increment_watched(string n){
+    for(auto &v:movies){            // Here we have to pass by reference as it has to be changed.
+        if(v.get_name()==n){
+            v.increment();
+            return true;
+            
+        }
+        
+    }
+    
+    return false;
+    
+}
+void Movies::display()const{
+    if(movies.size()==0)
+        cout<<"Sorry , no movies found.\n";
+    else{
+    for(const auto v:movies){
+        v.display();
+        //cout<<v.get_name()<<", "<<v.get_rating()<<", "<<v.get_watched()<<endl;
+    }
+    
+    }
+}
+
+
+
+// ===========================================================
+// main.cpp  file
+// ===========================================================
+
+#include <iostream>
+#include<string>
+#include<vector>
+#include "Movies.h"
+using namespace std;
+
+void increment_watched(Movies &movies,string name);
+void add_movie(Movies &movies,string name,string rating,int watched);
+
+void increment_watched(Movies &movies,string name){
+    if(movies.increment_watched(name))
+        cout<<name<<" watch incremented\n";
+    else
+        cout<<name<<" not found\n";
+}
+
+void add_movie(Movies &movies,string name,string rating,int watched){
+    if(movies.add_movie(name,rating,watched))
+        cout<<name<<" added\n";
+    else
+        cout<<name<<" already exists\n";
+}
+
+int main(){
+    Movies my_movies;
+    my_movies.display();
+    cout<<"===========================\n\n";
+    add_movie(my_movies,"John Wick","OS",100);
+    add_movie(my_movies,"Harry Potter","EXC",50);
+    add_movie(my_movies,"War","GG",1);
+    
+    my_movies.display();
+    cout<<"===========================\n\n";
+
+    add_movie(my_movies,"John Wick","OS",100);
+    add_movie(my_movies,"Fast&Furius","EXC",10);
+    my_movies.display();
+    cout<<"===========================\n\n";
+        
+    increment_watched(my_movies,"John Wick");
+    increment_watched(my_movies,"Sholay");
+    my_movies.display();
+
+    return 0;
+}
