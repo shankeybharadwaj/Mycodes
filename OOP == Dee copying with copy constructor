@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+class Deep{
+private:
+    int *data;
+public:
+    int get_data_value(){
+        return *data;
+    }
+    void set_data_value(int d){
+        *data=d;
+    }
+    Deep(int d);
+    Deep(const Deep &source);
+    ~Deep();
+};
+
+Deep::Deep(int d){
+        data = new int;
+        *data = d;
+}
+Deep::Deep(const Deep &source){
+        data = new int;     // allocate storage
+        *data = *(source.data);
+        cout<<"Copy constructor -Deep\n";
+        // Deep copy - Create New storage and copy values.
+}
+// OR we can also use Delegating constructor with Copy constructors
+//Deep::Deep(const Deep &source):Deep{*(source.data)}{
+//    cout<<"Copy constructor - Deep\n";
+//}    
+Deep::~Deep(){
+    delete data;    // freeing storage
+    cout<<"Destructor freeing data.\n";
+}
+
+void display_deep(Deep s){
+    cout<<s.get_data_value()<<endl;
+}
+
+int main(){
+    Deep obj1{100};
+    display_deep(obj1);
+    // The copy of obj1 has different address but same value of 100
+    // So when that copy's data is freed , obj1's data is unchanged.
+    Deep obj2{obj1};
+    // obj1 and obj2 point to different address but both contain 100 till now.
+    obj2.set_data_value(10000);     // Now Only the obj2 changes to 10000 .  obj1 remains unchanged (100)
+    return 0;
+}
