@@ -1,0 +1,29 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+
+int main()
+{
+//    int a;
+//    cout << "Enter a number: ";
+//    cin >> a;
+//    if (a % 2 == 0)
+//        cout << a << " is even.\n";
+//    else
+//        cout << a << " is odd.\n";
+//    // Now doing with the help of conditional operator.===========
+//    cout << a <<" is an "<<( (a%2 == 0) ? "even " : "odd ")<< "number.\n";
+
+//    int a,b;
+//    cout << "Enter two nos.: ";
+//    cin >> a>>b;
+//    if (a!=b){
+//        cout << "Largest is : "<< ((a>b) ? a : b)<<endl;
+//        cout << "Smallest is : "<< ((a<b) ? a : b)<<endl;
+//    }else 
+//        cout <<"The nos. are the same.\n";
+    double a{22.0/7};
+    cout <<fixed<<setprecision(3);
+    cout << a<<endl;
+    return 0;
+}
