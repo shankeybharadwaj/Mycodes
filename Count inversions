@@ -1,0 +1,141 @@
+#include<iostream>
+#include<string>
+#include<string.h>
+#include<cstring>
+#include<math.h>
+#include<iomanip>
+#include<vector>
+#include<cmath>
+#include<algorithm>
+#include<numeric>
+#include<cctype>
+#include<utility>
+#include<set>
+#include<map>
+#include<sstream>
+#include<iterator>
+#include<limits>
+#include<map>
+#include<deque>
+using namespace std;
+#define pb push_back
+#define F(i,a,b) for(int i=a;i<b;++i)
+#define Fl(i,a,b) for(long long i=a;i<b;++i)
+#define all(v) v.begin(), v.end() 
+#define X first;
+#define Y second;
+#define mp make_pair;
+typedef long long ll;
+typedef std::vector<int> vec;
+typedef std::vector<long long> vecl;
+typedef map<int,int> mii;
+typedef std::pair<int,int> pii;
+typedef pair<ll,ll> pll; 
+const int MOD = 1000000007;
+const double pi = 2*acos(0.0);
+
+
+// Merges two subarrays of arr[]. 
+// First subarray is arr[l..m] 
+// Second subarray is arr[m+1..r] 
+ll merge(ll arr[], ll l, ll m, ll r) 
+{   
+    ll x=0;
+    
+	ll i, j, k; 
+	ll n1 = m - l + 1; 
+	ll n2 = r - m; 
+    
+	/* create temp arrays */
+	ll L[n1], R[n2]; 
+
+	/* Copy data to temp arrays L[] and R[] */
+	for (i = 0; i < n1; i++) 
+		L[i] = arr[l + i]; 
+     for(j = 0; j < n2; j++) 
+		R[j] = arr[m + 1 + j]; 
+
+	/* Merge the temp arrays back into arr[l..r]*/
+	i = 0; // Initial index of first subarray 
+	j = 0; // Initial index of second subarray 
+	k = l; // Initial index of merged subarray 
+	while (i < n1 && j < n2) { 
+		if (L[i] <= R[j]) { 
+			arr[k] = L[i]; 
+			i++; 
+		} 
+		else { 
+            x+=n1-i;
+			arr[k] = R[j]; 
+			j++; 
+		} 
+		k++; 
+	} 
+
+	/* Copy the remaining elements of L[], if there 
+	are any */
+	while (i < n1) { 
+		arr[k] = L[i]; 
+		i++; 
+		k++; 
+	} 
+
+	/* Copy the remaining elements of R[], if there 
+	are any */
+	while (j < n2) { 
+		arr[k] = R[j]; 
+		j++; 
+		k++; 
+	} 
+    if(l==r)
+        return 0;
+    return x;
+} 
+
+/* l is for left index and r is right index of the 
+sub-array of arr to be sorted */
+ll mergeSort(ll arr[], ll l, ll r) 
+{   
+    ll x=0,y=0,z=0;
+    if (l==r)return 0;
+	if (l < r) { 
+		// Same as (l+r)/2, but avoids overflow for 
+		// large l and h 
+		ll m = l + (r - l) / 2; 
+
+		// Sort first and second halves 
+		x=mergeSort(arr, l, m); 
+		y=mergeSort(arr, m + 1, r); 
+
+		z=merge(arr, l, m, r); 
+	} 
+    return x+y+z;
+} 
+
+/* UTILITY FUNCTIONS */
+/* Function to print an array */
+void printArray(int A[], int size) 
+{ 
+	int i; 
+	for (i = 0; i < size; i++) 
+		printf("%d ", A[i]); 
+	printf("\n"); 
+} 
+
+/* Driver program to test above functions */
+int main() 
+{ 
+	ll arr[100000];
+    F(i,0,100000)cin>>arr[i];
+	ll arr_size = sizeof(arr) / sizeof(arr[0]); 
+
+	//printf("Given array is \n"); 
+	//printArray(arr, arr_size); 
+    ll c;
+	c=mergeSort(arr, 0, arr_size - 1); 
+
+	//printf("\nSorted array is \n"); 
+	//printArray(arr, arr_size); 
+    cout<<c<<"\n";
+	return 0; 
+} 
